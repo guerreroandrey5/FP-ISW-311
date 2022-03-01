@@ -11,12 +11,12 @@ import javax.swing.UIManager;
  *
  * @author Guerrero
  */
-public class CardsGameMain extends javax.swing.JFrame {
+public class FrmPuntu extends javax.swing.JFrame {
 
     /**
-     * Creates new form CardsGameMain
+     * Creates new form NewJFrame
      */
-    public CardsGameMain() {
+    public FrmPuntu() {
         initComponents();
     }
 
@@ -31,8 +31,7 @@ public class CardsGameMain extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cartas Inglesas Super Divertidas");
+        setTitle("Puntuaciones");
         setSize(new java.awt.Dimension(400, 300));
 
         jButton1.setText("Volver");
@@ -91,20 +90,21 @@ public class CardsGameMain extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CardsGameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmPuntu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CardsGameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmPuntu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CardsGameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmPuntu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CardsGameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmPuntu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CardsGameMain().setVisible(true);
+                new FrmPuntu().setVisible(true);
             }
         });
     }
