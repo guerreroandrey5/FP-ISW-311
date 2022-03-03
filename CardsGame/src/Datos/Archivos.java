@@ -5,35 +5,40 @@
 package Datos;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Guerrero
  */
 public class Archivos {
+    public DefaultTableModel RecordsTablez = new DefaultTableModel();
+    public DefaultTableCellRenderer MyHeaderRender = new DefaultTableCellRenderer(); 
+    private String ruta = System.getProperties().getProperty("user.dir");
     public void loadList(){//No debería funcionar
        
-        BufferedReader br = null;
-    try{
-        br = new BufferedReader(new FileReader("HistorialRobot.txt"));
-        String line;
-        while ((line = br.readLine()) != null){
-            //AddModel.addElement(line);
-        }
-        
-    }
-    catch(Exception e){
-        System.out.println(""+e);
-    }
-    finally{
+                 
+        File archivo = null;
+        FileReader FileR = null;
+        BufferedReader BufferedR = null;
         try{
-            br.close();
-        }
-        catch(Exception e){
-            System.out.println(""+e);
+            archivo = new File(ruta + "//files/data.txt");
+            FileR = new FileReader(archivo);
+            BufferedR = new BufferedReader(FileR);
+            String data;           
+            RecordsTablez.addColumn("Puntajes de CardsGame");
+            while((data = BufferedR.readLine()) != null){
+                System.out.println(data);
+                RecordsTablez.addRow(new String []{data});
+            }   
+        }catch (Exception e){JOptionPane.showMessageDialog(null, "No hay datos registrados sobre Puntajes, el registro se mostrará en blanco");}finally{try{if(null!=FileR) {FileR.close();}}catch(IOException e2){
+            
         }
     }
-        
     }
 }

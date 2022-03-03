@@ -4,7 +4,10 @@
  */
 package Presentacion;
 
+import Negociacion.PieChart;
+import Datos.Archivos;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneDarkIJTheme;
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 /**
@@ -12,14 +15,21 @@ import javax.swing.UIManager;
  * @author Guerrero
  */
 public class FrmPuntu extends javax.swing.JFrame {
-
+private Archivos data = new Archivos();
     /**
      * Creates new form NewJFrame
      */
     public FrmPuntu() {
         initComponents();
+        TRLoad();
     }
 
+    void TRLoad(){
+        data.loadList();
+        RecordsTable.setModel(data.RecordsTablez);
+        RecordsTable.getTableHeader().getColumnModel().getColumn(0).setHeaderRenderer(data.MyHeaderRender);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,44 +39,81 @@ public class FrmPuntu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        RecordsTable = new javax.swing.JTable();
+        MenuBar = new javax.swing.JMenuBar();
+        Inicio = new javax.swing.JMenu();
+        BtnGraphs = new javax.swing.JMenuItem();
+        BtnBack = new javax.swing.JMenuItem();
 
         setTitle("Puntuaciones");
-        setSize(new java.awt.Dimension(400, 300));
+        setSize(new java.awt.Dimension(600, 400));
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        RecordsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        RecordsTable.setColumnSelectionAllowed(true);
+        RecordsTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(RecordsTable);
+        RecordsTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        Inicio.setText("Menu");
+
+        BtnGraphs.setText("Gráfico");
+        BtnGraphs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BtnGraphsActionPerformed(evt);
             }
         });
+        Inicio.add(BtnGraphs);
+
+        BtnBack.setText("Volver");
+        BtnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBackActionPerformed(evt);
+            }
+        });
+        Inicio.add(BtnBack);
+
+        MenuBar.add(Inicio);
+
+        setJMenuBar(MenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(322, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(272, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
         MenuPrincipal mgame = new MenuPrincipal();
         mgame.setVisible(true);
         mgame.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BtnBackActionPerformed
+
+    private void BtnGraphsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGraphsActionPerformed
+        PieChart CC = new PieChart("Gráfico","Porcentaje de Palos");
+        CC.pack();
+        CC.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        CC.setVisible(true);
+    }//GEN-LAST:event_BtnGraphsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,6 +157,11 @@ public class FrmPuntu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JMenuItem BtnBack;
+    private javax.swing.JMenuItem BtnGraphs;
+    private javax.swing.JMenu Inicio;
+    private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JTable RecordsTable;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

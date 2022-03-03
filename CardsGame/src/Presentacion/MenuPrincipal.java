@@ -4,7 +4,9 @@
  */
 package Presentacion;
 
+import Negociacion.Imagenes;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneDarkIJTheme;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 
@@ -13,12 +15,16 @@ import javax.swing.UIManager;
  * @author Guerrero
  */
 public class MenuPrincipal extends javax.swing.JFrame {
+ private Imagenes img = new Imagenes();
  
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
         initComponents();
+        int width = PlnLogo.getSize().width-5;
+        int height = PlnLogo.getSize().height-5;
+        LblImgLogo.setIcon(img.getScaledImage(new ImageIcon("files/logo.png"), width, height));
     }
 
     /**
@@ -30,10 +36,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        PlnLogo = new javax.swing.JPanel();
+        LblImgLogo = new javax.swing.JLabel();
+        MenuBar = new javax.swing.JMenuBar();
+        JMenu = new javax.swing.JMenu();
+        BtnPlay = new javax.swing.JMenuItem();
+        BtnPuntu = new javax.swing.JMenuItem();
+        BtnExit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cartas Inglesas Super Divertidas");
@@ -41,87 +50,79 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(400, 300));
         setResizable(false);
         setSize(new java.awt.Dimension(400, 300));
+        getContentPane().setLayout(null);
 
-        jButton1.setText("Jugar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        LblImgLogo.setText(" ");
 
-        jButton2.setText("Ver Puntuaciones");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Salir");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Juego de Cartas Inglesas Super Divertido");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(125, 125, 125))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(152, 152, 152))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(154, 154, 154))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(jLabel1)
-                .addContainerGap(81, Short.MAX_VALUE))
+        javax.swing.GroupLayout PlnLogoLayout = new javax.swing.GroupLayout(PlnLogo);
+        PlnLogo.setLayout(PlnLogoLayout);
+        PlnLogoLayout.setHorizontalGroup(
+            PlnLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PlnLogoLayout.createSequentialGroup()
+                .addComponent(LblImgLogo)
+                .addGap(0, 222, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addGap(47, 47, 47)
-                .addComponent(jButton1)
-                .addGap(26, 26, 26)
-                .addComponent(jButton2)
-                .addGap(31, 31, 31)
-                .addComponent(jButton3)
-                .addContainerGap(95, Short.MAX_VALUE))
+        PlnLogoLayout.setVerticalGroup(
+            PlnLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PlnLogoLayout.createSequentialGroup()
+                .addComponent(LblImgLogo)
+                .addGap(0, 104, Short.MAX_VALUE))
         );
+
+        getContentPane().add(PlnLogo);
+        PlnLogo.setBounds(80, 40, 225, 120);
+
+        JMenu.setText("Inicio");
+
+        BtnPlay.setText("Jugar");
+        BtnPlay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPlayActionPerformed(evt);
+            }
+        });
+        JMenu.add(BtnPlay);
+
+        BtnPuntu.setText("Puntuaciones");
+        BtnPuntu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPuntuActionPerformed(evt);
+            }
+        });
+        JMenu.add(BtnPuntu);
+
+        BtnExit.setText("Salir");
+        BtnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnExitActionPerformed(evt);
+            }
+        });
+        JMenu.add(BtnExit);
+
+        MenuBar.add(JMenu);
+
+        setJMenuBar(MenuBar);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BtnPuntuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPuntuActionPerformed
         FrmPuntu pgame = new FrmPuntu();
         pgame.setVisible(true);
         pgame.setLocationRelativeTo(null);
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BtnPuntuActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BtnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExitActionPerformed
+        dispose();
+    }//GEN-LAST:event_BtnExitActionPerformed
+
+    private void BtnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPlayActionPerformed
         CardsGameMain cgame = new CardsGameMain();
         cgame.setVisible(true);
         cgame.setLocationRelativeTo(null);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BtnPlayActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,10 +165,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuItem BtnExit;
+    private javax.swing.JMenuItem BtnPlay;
+    private javax.swing.JMenuItem BtnPuntu;
+    private javax.swing.JMenu JMenu;
+    private javax.swing.JLabel LblImgLogo;
+    private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JPanel PlnLogo;
     // End of variables declaration//GEN-END:variables
 
 }
