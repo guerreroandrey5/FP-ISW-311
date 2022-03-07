@@ -6,6 +6,8 @@ package Negociacion;
 
 import Objetos.Baraja;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,11 +21,22 @@ public class NBaraja {
        Imagenes img = new Imagenes();
        if("As".equals(info2)){
            info2 = "1";
+       }
+       if("Jota".equals(info2)){
+           info2 = "11";
        } 
+       if("Reina".equals(info2)){
+           info2 = "12";
+       } 
+       if("Rey".equals(info2)){
+           info2 = "13";
+       } 
+
        String rute = "files/BRJ/"+ info1 + " (" + info2 + ").png";
-       arraylist.add(new Baraja(info1, info2, img.getScaledImage(new ImageIcon(rute), 65, 100)));
+       arraylist.add(new Baraja(info1, info2, img.getScaledImage(new ImageIcon(rute), 65, 100)));       
    }
    public ArrayList getList() {
+       Collections.shuffle(arraylist, new Random());
        return arraylist;
    }
    

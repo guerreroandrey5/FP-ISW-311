@@ -5,16 +5,13 @@
 package Datos;
 
 import Negociacion.NBaraja;
-import Objetos.Baraja;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -59,14 +56,13 @@ public class Archivos {
         while (sc.hasNextLine()) 
     {
         String[] stdinfo = sc.nextLine().split(",");
-        //arraylist.add(new Baraja(stdinfo[1], stdinfo[0]));
         Brj.crearcarta(stdinfo[1],stdinfo[0]);
     }
 
          Random r = new Random();
         int number = r.nextInt(51)+1;
-        System.out.println(number);//Debug para mostrar el numero random generado
-        System.out.println(Brj.getList().get(number));//Para ver todo el array simplemente dejar "arraylist" dentro del parentesis
+//        System.out.println(number);//Debug para mostrar el numero random generado
+//        System.out.println(Brj.getList());//Para ver todo el array simplemente dejar "arraylist" dentro del parentesis
     }
     
 
