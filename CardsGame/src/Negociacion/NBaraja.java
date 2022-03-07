@@ -17,7 +17,7 @@ import javax.swing.ImageIcon;
  */
 public class NBaraja {
    private static ArrayList<Baraja> arraylist = new ArrayList<Baraja>();
-   private static HashMap palos = new HashMap();
+   private static HashMap<String, String> palos = new HashMap();
    
    public void crearcarta(String info1, String info2){
        Imagenes img = new Imagenes();
