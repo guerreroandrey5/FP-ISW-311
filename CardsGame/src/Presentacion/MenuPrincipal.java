@@ -39,7 +39,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         PlnLogo = new javax.swing.JPanel();
         LblImgLogo = new javax.swing.JLabel();
         MenuBar = new javax.swing.JMenuBar();
-        JMenu = new javax.swing.JMenu();
+        Inicio = new javax.swing.JMenu();
         BtnPlay = new javax.swing.JMenuItem();
         BtnPuntu = new javax.swing.JMenuItem();
         BtnExit = new javax.swing.JMenuItem();
@@ -72,7 +72,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(PlnLogo);
         PlnLogo.setBounds(80, 40, 225, 120);
 
-        JMenu.setText("Inicio");
+        Inicio.setText("Inicio");
 
         BtnPlay.setText("Jugar");
         BtnPlay.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +80,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 BtnPlayActionPerformed(evt);
             }
         });
-        JMenu.add(BtnPlay);
+        Inicio.add(BtnPlay);
 
         BtnPuntu.setText("Puntuaciones");
         BtnPuntu.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +88,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 BtnPuntuActionPerformed(evt);
             }
         });
-        JMenu.add(BtnPuntu);
+        Inicio.add(BtnPuntu);
 
         BtnExit.setText("Salir");
         BtnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -96,9 +96,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 BtnExitActionPerformed(evt);
             }
         });
-        JMenu.add(BtnExit);
+        Inicio.add(BtnExit);
 
-        MenuBar.add(JMenu);
+        MenuBar.add(Inicio);
 
         setJMenuBar(MenuBar);
 
@@ -168,7 +168,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem BtnExit;
     private javax.swing.JMenuItem BtnPlay;
     private javax.swing.JMenuItem BtnPuntu;
-    private javax.swing.JMenu JMenu;
+    private javax.swing.JMenu Inicio;
     private javax.swing.JLabel LblImgLogo;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JPanel PlnLogo;

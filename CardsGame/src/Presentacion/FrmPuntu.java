@@ -7,6 +7,7 @@ package Presentacion;
 import Negociacion.PieChart;
 import Datos.Archivos;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneDarkIJTheme;
+import java.io.FileNotFoundException;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
@@ -45,6 +46,7 @@ private Archivos data = new Archivos();
         Inicio = new javax.swing.JMenu();
         BtnGraphs = new javax.swing.JMenuItem();
         BtnBack = new javax.swing.JMenuItem();
+        TestButton = new javax.swing.JMenuItem();
 
         setTitle("Puntuaciones");
         setSize(new java.awt.Dimension(600, 400));
@@ -83,6 +85,14 @@ private Archivos data = new Archivos();
         });
         Inicio.add(BtnBack);
 
+        TestButton.setText("TestButton");
+        TestButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TestButtonActionPerformed(evt);
+            }
+        });
+        Inicio.add(TestButton);
+
         MenuBar.add(Inicio);
 
         setJMenuBar(MenuBar);
@@ -114,6 +124,14 @@ private Archivos data = new Archivos();
         CC.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         CC.setVisible(true);
     }//GEN-LAST:event_BtnGraphsActionPerformed
+
+    private void TestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TestButtonActionPerformed
+    try {
+        data.loadCards();
+    } catch (FileNotFoundException ex) {
+        
+    }  
+    }//GEN-LAST:event_TestButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,6 +180,7 @@ private Archivos data = new Archivos();
     private javax.swing.JMenu Inicio;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JTable RecordsTable;
+    private javax.swing.JMenuItem TestButton;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

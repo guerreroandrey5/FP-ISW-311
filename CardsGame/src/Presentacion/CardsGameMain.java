@@ -4,7 +4,9 @@
  */
 package Presentacion;
 
+import Datos.Archivos;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneDarkIJTheme;
+import java.io.FileNotFoundException;
 import javax.swing.UIManager;
 
 /**
@@ -12,12 +14,13 @@ import javax.swing.UIManager;
  * @author Guerrero
  */
 public class CardsGameMain extends javax.swing.JFrame {
-
+private Archivos data = new Archivos();
     /**
      * Creates new form CardsGameMain
      */
     public CardsGameMain() {
         initComponents();
+        loadCardz();//carga la baraja, el print esta ajustado para solo mostrar uno
     }
 
     /**
@@ -29,45 +32,69 @@ public class CardsGameMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        MenuBar = new javax.swing.JMenuBar();
+        Inicio = new javax.swing.JMenu();
+        BtnBack = new javax.swing.JMenuItem();
+        TestButton = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cartas Inglesas Super Divertidas");
         setSize(new java.awt.Dimension(400, 300));
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Inicio.setText("Inicio");
+
+        BtnBack.setText("Volver");
+        BtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BtnBackActionPerformed(evt);
             }
         });
+        Inicio.add(BtnBack);
+
+        TestButton.setText("TestButton");
+        TestButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TestButtonActionPerformed(evt);
+            }
+        });
+        Inicio.add(TestButton);
+
+        MenuBar.add(Inicio);
+
+        setJMenuBar(MenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(322, Short.MAX_VALUE))
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(272, Short.MAX_VALUE))
+            .addGap(0, 277, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
         MenuPrincipal mgame = new MenuPrincipal();
         mgame.setVisible(true);
         mgame.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BtnBackActionPerformed
+
+    private void loadCardz(){
+        try {
+        data.loadCards();
+    } catch (FileNotFoundException ex) {
+        
+    } 
+    }
+    
+    private void TestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TestButtonActionPerformed
+        loadCardz();
+    }//GEN-LAST:event_TestButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,6 +137,9 @@ public class CardsGameMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JMenuItem BtnBack;
+    private javax.swing.JMenu Inicio;
+    private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JMenuItem TestButton;
     // End of variables declaration//GEN-END:variables
 }
