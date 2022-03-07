@@ -11,6 +11,7 @@ import Objetos.Baraja;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneDarkIJTheme;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
@@ -26,7 +27,11 @@ private NBaraja BRJ = new NBaraja();
 private ArrayList<Baraja> BarajaL = new ArrayList();
 private ArrayList<Baraja> Jugador = new ArrayList();
 private ArrayList<Baraja> PC = new ArrayList();
-    /**
+private HashMap PD = new HashMap();
+private ArrayList<JLabel> LabelPlayer = new ArrayList<>();
+private ArrayList<JLabel> LabelPC = new ArrayList<>();
+
+/**
      * Creates new form CardsGameMain
      */
     public CardsGameMain() {
@@ -43,6 +48,7 @@ private ArrayList<Baraja> PC = new ArrayList();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         MenuBar = new javax.swing.JMenuBar();
         Inicio = new javax.swing.JMenu();
         BtnBack = new javax.swing.JMenuItem();
@@ -51,6 +57,13 @@ private ArrayList<Baraja> PC = new ArrayList();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cartas Inglesas Super Divertidas");
         setSize(new java.awt.Dimension(400, 300));
+
+        jButton1.setText("Jugar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         Inicio.setText("Inicio");
 
@@ -78,11 +91,17 @@ private ArrayList<Baraja> PC = new ArrayList();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 820, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(710, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 469, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(218, 218, 218)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
         pack();
@@ -98,6 +117,7 @@ private ArrayList<Baraja> PC = new ArrayList();
     private void loadCardz(){
         try {
         data.loadCards();
+        BRJ.definirPalos();
         BarajaL = BRJ.getList(); //Cuando se implemente la funcion de revolver, se deberia llamar en esta linea
         Jugador = BRJ.repartir(BarajaL);
         BarajaL.removeAll(Jugador);
@@ -107,8 +127,6 @@ private ArrayList<Baraja> PC = new ArrayList();
         bckbrj.setIcon(img.getScaledImage(new ImageIcon("files/BRJ/BCKBRJ.png"), 80, 100));
         bckbrj.setBounds(10, 175, 80, 100);
         this.add(bckbrj);
-        ArrayList<JLabel> LabelPlayer = new ArrayList<>();
-        ArrayList<JLabel> LabelPC = new ArrayList<>();
             for (int i = 0; i < Jugador.size(); i++) {
                 Baraja get = Jugador.get(i);
                 JLabel label = new JLabel();
@@ -132,14 +150,72 @@ private ArrayList<Baraja> PC = new ArrayList();
                 this.add(getL);
                 
             }
+            PD = BRJ.getPalos();
+            
     } catch (FileNotFoundException ex) {
         
     } 
     }
     
+    
+    private void comparar() {
+        for (int i = 0; i < 10; i++) {
+            Baraja Carta = PC.get(i);
+            JLabel label = LabelPC.get(i);
+            label.setIcon(Carta.getImg());
+            Baraja Carta2 = Jugador.get(i);
+            logica(Carta, Carta2);
+        }
+    }
+    
+    private void logica(Baraja cd1, Baraja cd2) {
+        String name1 = cd1.getNcardname();
+        String name2 = cd2.getNcardname();
+        int num1 = Integer.valueOf(cd1.getNcardnumber());
+        int num2 = Integer.valueOf(cd2.getNcardnumber());
+        String tipo1 = PD.get(cd1.getNcardname()).toString();
+        String tipo2 = PD.get(cd2.getNcardname()).toString();
+        if (name1.equals(name2)) {
+            System.out.println(num1 + "," + num2);
+            if(num1 < num2) {
+                System.out.println("gana" + cd1);
+            } else {
+                System.out.println("gana" + cd2);
+            }
+        } else if (tipo1.equals(tipo2)) {
+            if(num1 < num2) {
+                System.out.println("gana" + cd1);
+            } else {
+                System.out.println("gana" + cd2);
+            }
+        } else if (tipo1.equals("Fuerte") && tipo2.equals("Regular")||tipo2.equals("Fuerte") && tipo1.equals("Regular")) {
+            if(tipo1.equals("Fuerte")) {
+                System.out.println("gana" + cd1);
+            } else {
+                System.out.println("gana" + cd2);
+            }
+        } else if (tipo1.equals("Debil") && tipo2.equals("Regular")||tipo2.equals("Debil") && tipo1.equals("Regular")) {
+            if(tipo1.equals("Regular")) {
+                System.out.println("gana" + cd1);
+            } else {
+                System.out.println("gana" + cd2);
+            }
+        } else if (tipo1.equals("Debil") && tipo2.equals("Fuerte")||tipo2.equals("Debil") && tipo1.equals("Fuerte")) {
+            if(tipo1.equals("Debil")) {
+                System.out.println("gana" + cd1);
+            } else {
+                System.out.println("gana" + cd2);
+            }
+        }
+    }
+    
     private void TestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TestButtonActionPerformed
         loadCardz();
     }//GEN-LAST:event_TestButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     comparar();   // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,5 +262,6 @@ private ArrayList<Baraja> PC = new ArrayList();
     private javax.swing.JMenu Inicio;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JMenuItem TestButton;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

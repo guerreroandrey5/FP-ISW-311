@@ -25,6 +25,14 @@ public class Baraja /*extends JLabel*/ {
     public ImageIcon getImg() {
         return img;
     }
+
+    public String getNcardname() {
+        return ncardname;
+    }
+
+    public String getNcardnumber() {
+        return ncardnumber;
+    }
     
     
     
