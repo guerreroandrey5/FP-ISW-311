@@ -207,7 +207,10 @@ public int ganes = 0;
             Baraja Carta2 = Jugador.get(contador);
             logica(Carta, Carta2, 1);            
             JLabel label = LabelPC.get(contador);
-            label.setIcon(Carta.getImg());           
+            JLabel label2 = LabelPlayer.get(contador);
+            label.setIcon(Carta.getImg());   
+            label.setSize(label.getWidth()+20, label.getHeight()+20);
+            label2.setBounds(label2.getX(), label2.getY() - 20,label2.getWidth()+20, label2.getHeight()+20);
     }
     private void compararYPER() {
         for (int i = 0; i < 10; i++) {
@@ -215,8 +218,6 @@ public int ganes = 0;
             Baraja Carta2 = Jugador.get(i);
             logica(Carta, Carta2, 0);                       
         }
-            System.out.println(ganes);
-            System.out.println((ganes*100)/10);
             int per = (ganes*100)/10;
             jLabel3.setText("<html><body>Probablilidad de victoria: <br>"+per + "%</body></html>");        
     }
@@ -286,12 +287,19 @@ public int ganes = 0;
     }//GEN-LAST:event_TestButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         jButton2.setVisible(true);
         jButton1.setVisible(false);
         comparar();   // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+            JLabel label = LabelPC.get(contador);
+            JLabel label2 = LabelPlayer.get(contador);
+            label.setSize(label.getWidth()-20, label.getHeight()-20);
+            label2.setBounds(label2.getX(), label2.getY() + 20,label2.getWidth()-20, label2.getHeight()-20);            
+      
         contador += 1;
         if(contador == 9) {
             jButton2.setVisible(false);
