@@ -4,9 +4,10 @@
  */
 package Presentacion;
 
-import Negociacion.PieChart;
+import Negociacion.PieChartDiamond;
 import Datos.Archivos;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneDarkIJTheme;
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -44,7 +45,10 @@ private Archivos data = new Archivos();
         RecordsTable = new javax.swing.JTable();
         MenuBar = new javax.swing.JMenuBar();
         Inicio = new javax.swing.JMenu();
-        BtnGraphs = new javax.swing.JMenuItem();
+        BtnDiamGraphs = new javax.swing.JMenuItem();
+        BtnPicGraphs = new javax.swing.JMenuItem();
+        BtnCoraGraphs = new javax.swing.JMenuItem();
+        BtnTrebGraphs = new javax.swing.JMenuItem();
         BtnBack = new javax.swing.JMenuItem();
         TestButton = new javax.swing.JMenuItem();
 
@@ -69,13 +73,37 @@ private Archivos data = new Archivos();
 
         Inicio.setText("Menu");
 
-        BtnGraphs.setText("Gráfico");
-        BtnGraphs.addActionListener(new java.awt.event.ActionListener() {
+        BtnDiamGraphs.setText("Porcentaje Diamantes");
+        BtnDiamGraphs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnGraphsActionPerformed(evt);
+                BtnDiamGraphsActionPerformed(evt);
             }
         });
-        Inicio.add(BtnGraphs);
+        Inicio.add(BtnDiamGraphs);
+
+        BtnPicGraphs.setText("Porcentaje Picas");
+        BtnPicGraphs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPicGraphsActionPerformed(evt);
+            }
+        });
+        Inicio.add(BtnPicGraphs);
+
+        BtnCoraGraphs.setText("Porcentaje Corazones");
+        BtnCoraGraphs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCoraGraphsActionPerformed(evt);
+            }
+        });
+        Inicio.add(BtnCoraGraphs);
+
+        BtnTrebGraphs.setText("PorcentajeTreboles");
+        BtnTrebGraphs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTrebGraphsActionPerformed(evt);
+            }
+        });
+        Inicio.add(BtnTrebGraphs);
 
         BtnBack.setText("Volver");
         BtnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -118,12 +146,14 @@ private Archivos data = new Archivos();
         this.dispose();
     }//GEN-LAST:event_BtnBackActionPerformed
 
-    private void BtnGraphsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGraphsActionPerformed
-        PieChart CC = new PieChart("Gráfico","Porcentaje de Palos");
-        CC.pack();
+    private void BtnDiamGraphsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDiamGraphsActionPerformed
+        PieChartDiamond CC = new PieChartDiamond("Gráfico","Porcentaje de Diamantes");        
+        CC.pack();        
         CC.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        CC.setVisible(true);
-    }//GEN-LAST:event_BtnGraphsActionPerformed
+        CC.setVisible(true);  
+        CC.setTitle("Porcentaje de Diamantes");
+        CC.setLocationRelativeTo(null);
+    }//GEN-LAST:event_BtnDiamGraphsActionPerformed
 
     private void TestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TestButtonActionPerformed
     try {
@@ -132,6 +162,33 @@ private Archivos data = new Archivos();
         
     }  
     }//GEN-LAST:event_TestButtonActionPerformed
+
+    private void BtnTrebGraphsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTrebGraphsActionPerformed
+        PieChartDiamond CC = new PieChartDiamond("Gráfico","Porcentaje de Treboles");        
+        CC.pack();        
+        CC.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        CC.setVisible(true);
+        CC.setTitle("Porcentaje de Treboles");       
+        CC.setLocationRelativeTo(null);
+    }//GEN-LAST:event_BtnTrebGraphsActionPerformed
+
+    private void BtnCoraGraphsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCoraGraphsActionPerformed
+        PieChartDiamond CC = new PieChartDiamond("Gráfico","Porcentaje de Corazones");        
+        CC.pack();        
+        CC.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        CC.setVisible(true); 
+        CC.setTitle("Porcentaje de Corazones");
+        CC.setLocationRelativeTo(null);
+    }//GEN-LAST:event_BtnCoraGraphsActionPerformed
+
+    private void BtnPicGraphsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPicGraphsActionPerformed
+        PieChartDiamond CC = new PieChartDiamond("Gráfico","Porcentaje de Picas");        
+        CC.pack();        
+        CC.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        CC.setVisible(true); 
+        CC.setTitle("Porcentaje de Picas");
+        CC.setLocationRelativeTo(null);
+    }//GEN-LAST:event_BtnPicGraphsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,7 +233,10 @@ private Archivos data = new Archivos();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem BtnBack;
-    private javax.swing.JMenuItem BtnGraphs;
+    private javax.swing.JMenuItem BtnCoraGraphs;
+    private javax.swing.JMenuItem BtnDiamGraphs;
+    private javax.swing.JMenuItem BtnPicGraphs;
+    private javax.swing.JMenuItem BtnTrebGraphs;
     private javax.swing.JMenu Inicio;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JTable RecordsTable;

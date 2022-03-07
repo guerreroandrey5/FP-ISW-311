@@ -17,23 +17,23 @@ import org.jfree.data.general.PieDataset;
  *
  * @author Guerrero
  */
-public class PieChart extends JFrame{
-    public PieChart(String appTitle, String chartTitle){
+public class PieChartPica extends JFrame{
+    public PieChartPica(String appTitle, String chartTitle){
         PieDataset dataset = createDataset();
         JFreeChart chart = createChart(dataset, chartTitle);
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new java.awt.Dimension(500, 300));
-        setContentPane(chartPanel);
+        setContentPane(chartPanel);           
     }
     
     private PieDataset createDataset(){
         DefaultPieDataset result = new DefaultPieDataset();
-        result.setValue("Palo Juerte",52);
-        result.setValue("Palo Regular",48);
-        //result.setValue("Mac",2);
+        result.setValue("Fuerte",10);
+        result.setValue("Regular",45);
+        result.setValue("Débil",45);        
         return result;
     }
-    
+            
     private JFreeChart createChart (PieDataset dataset, String title){
         JFreeChart chart = ChartFactory.createPieChart3D(title, dataset, true, true, false);
         PiePlot3D plot = (PiePlot3D) chart.getPlot();
