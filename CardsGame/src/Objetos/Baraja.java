@@ -4,19 +4,30 @@
  */
 package Objetos;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author Guerrero
  */
-public class Baraja {
+public class Baraja /*extends JLabel*/ {
     private String ncardname;
     private String ncardnumber;
-
-    public Baraja(String ncardname, String ncardnumber) {
+    private ImageIcon img;
+    
+    public Baraja(String ncardname, String ncardnumber, ImageIcon cardImagen) {
         this.ncardname = ncardname;
         this.ncardnumber = ncardnumber;
-        
+        this.img = cardImagen;
     }
+
+    public ImageIcon getImg() {
+        return img;
+    }
+    
+    
+    
     @Override
    public String toString() {
         String s = "CardName: " + ncardname + "\nCardNumber: " + ncardnumber;

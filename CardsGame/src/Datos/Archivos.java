@@ -4,6 +4,7 @@
  */
 package Datos;
 
+import Negociacion.NBaraja;
 import Objetos.Baraja;
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -25,6 +27,7 @@ public class Archivos {
     public DefaultTableModel RecordsTablez = new DefaultTableModel();
     public DefaultTableCellRenderer MyHeaderRender = new DefaultTableCellRenderer(); 
     private String ruta = System.getProperties().getProperty("user.dir");
+    private NBaraja Brj = new NBaraja();
     public void loadList(){
        
                  
@@ -47,7 +50,7 @@ public class Archivos {
     }
     }
     
-    private ArrayList<Baraja> arraylist = new ArrayList<Baraja>();
+    
     public void loadCards() throws FileNotFoundException{ 
 
     File myFile = new File(ruta + "//files/Baraja.txt");
@@ -56,14 +59,17 @@ public class Archivos {
         while (sc.hasNextLine()) 
     {
         String[] stdinfo = sc.nextLine().split(",");
-        arraylist.add(new Baraja(stdinfo[1], stdinfo[0]));
+        //arraylist.add(new Baraja(stdinfo[1], stdinfo[0]));
+        Brj.crearcarta(stdinfo[1],stdinfo[0]);
     }
 
          Random r = new Random();
         int number = r.nextInt(51)+1;
         System.out.println(number);//Debug para mostrar el numero random generado
-        System.out.println(arraylist.get(number));//Para ver todo el array simplemente dejar "arraylist" dentro del parentesis
+        System.out.println(Brj.getList().get(number));//Para ver todo el array simplemente dejar "arraylist" dentro del parentesis
     }
+    
+
     
 }
 

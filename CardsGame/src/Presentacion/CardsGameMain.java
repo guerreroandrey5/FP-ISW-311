@@ -5,8 +5,14 @@
 package Presentacion;
 
 import Datos.Archivos;
+import Negociacion.Imagenes;
+import Negociacion.NBaraja;
+import Objetos.Baraja;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneDarkIJTheme;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.UIManager;
 
 /**
@@ -15,6 +21,11 @@ import javax.swing.UIManager;
  */
 public class CardsGameMain extends javax.swing.JFrame {
 private Archivos data = new Archivos();
+private Imagenes img = new Imagenes();
+private NBaraja BRJ = new NBaraja();
+private ArrayList<Baraja> BarajaL = new ArrayList();
+private ArrayList<Baraja> Jugador = new ArrayList();
+private ArrayList<Baraja> PC = new ArrayList();
     /**
      * Creates new form CardsGameMain
      */
@@ -67,11 +78,11 @@ private Archivos data = new Archivos();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 820, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGap(0, 469, Short.MAX_VALUE)
         );
 
         pack();
@@ -87,6 +98,40 @@ private Archivos data = new Archivos();
     private void loadCardz(){
         try {
         data.loadCards();
+        BarajaL = BRJ.getList(); //Cuando se implemente la funcion de revolver, se deberia llamar en esta linea
+        Jugador = BRJ.repartir(BarajaL);
+        BarajaL.removeAll(Jugador);
+        PC = BRJ.repartir(BarajaL);
+        BarajaL.removeAll(PC);
+        JLabel bckbrj = new JLabel();
+        bckbrj.setIcon(img.getScaledImage(new ImageIcon("files/BRJ/BCKBRJ.png"), 80, 100));
+        bckbrj.setBounds(10, 175, 80, 100);
+        this.add(bckbrj);
+        ArrayList<JLabel> LabelPlayer = new ArrayList<>();
+        ArrayList<JLabel> LabelPC = new ArrayList<>();
+            for (int i = 0; i < Jugador.size(); i++) {
+                Baraja get = Jugador.get(i);
+                JLabel label = new JLabel();
+                label.setIcon(get.getImg());
+                LabelPlayer.add(label);
+            }
+            for (int j = 0; j < LabelPlayer.size(); j++) {
+                JLabel getLa = LabelPlayer.get(j);
+                getLa.setBounds(50 + (70*j), 350, 65, 100);
+                this.add(getLa);
+                
+            }
+            for (int r = 1; r < (PC.size()+1); r++) {
+                JLabel label = new JLabel();
+                label.setIcon(img.getScaledImage(new ImageIcon("files/BRJ/BCK (" + r + ").png"), 65, 100));
+                LabelPC.add(label);
+            }
+            for (int j = 0; j < LabelPC.size(); j++) {
+                JLabel getL = LabelPC.get(j);
+                getL.setBounds(70 + (70*j), 10, 65, 100);
+                this.add(getL);
+                
+            }
     } catch (FileNotFoundException ex) {
         
     } 
