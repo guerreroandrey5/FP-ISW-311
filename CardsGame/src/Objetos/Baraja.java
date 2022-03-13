@@ -5,7 +5,6 @@
 package Objetos;
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 /**
  *
@@ -32,9 +31,7 @@ public class Baraja /*extends JLabel*/ {
 
     public String getNcardnumber() {
         return ncardnumber;
-    }
-    
-    
+    }       
     
     @Override
    public String toString() {

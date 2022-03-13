@@ -9,36 +9,12 @@
             <Property name="text" type="java.lang.String" value="Menu"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="BtnDiamGraphs">
+            <MenuItem class="javax.swing.JMenuItem" name="BtnGraphs">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Porcentaje Diamantes"/>
+                <Property name="text" type="java.lang.String" value="Porcentajes de Palos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnDiamGraphsActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="BtnPicGraphs">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Porcentaje Picas"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnPicGraphsActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="BtnCoraGraphs">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Porcentaje Corazones"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCoraGraphsActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="BtnTrebGraphs">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="PorcentajeTreboles"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnTrebGraphsActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnGraphsActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="BtnBack">

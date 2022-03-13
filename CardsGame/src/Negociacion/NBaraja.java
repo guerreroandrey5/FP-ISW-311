@@ -103,8 +103,6 @@ public class NBaraja {
        return palos;
    }
    
-   
-   
    public ArrayList repartir(ArrayList list) {
        ArrayList hand = new ArrayList();
        for (int i = 0; i < 10; i++) {

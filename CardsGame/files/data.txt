@@ -1,3 +1,28 @@
-Guerrero, tiene 4 Puntos || 05 mar. 2022 20:26:28
-Cristopher, tiene 9 Puntos || 05 mar. 2022 20:26:28
-Guerrero, tiene 9 Puntos || 05 mar. 2022 20:26:28
+<------------------------------>
+Fecha: Mar 12, 2022, 9:11:06 PM
+Nombre del Jugador: Piter
+Puntos Obtenidos: 9
+<------------------------------>
+Fecha: Mar 12, 2022, 9:17:13 PM
+Nombre del Jugador: piter
+Puntos Obtenidos: -33
+<------------------------------>
+Fecha: Mar 12, 2022, 9:19:03 PM
+Nombre del Jugador: pietr
+Puntos Obtenidos: 8
+<------------------------------>
+Fecha: Mar 13, 2022, 12:23:30 AM
+Nombre del Jugador: piter
+Puntos Obtenidos: 7
+<------------------------------>
+Fecha: Mar 13, 2022, 12:23:30 AM
+Nombre del Jugador: piert
+Puntos Obtenidos: 7
+<------------------------------>
+Fecha: Mar 13, 2022, 12:23:30 AM
+Nombre del Jugador: asd
+Puntos Obtenidos: 7
+<------------------------------>
+Fecha: Mar 13, 2022, 12:28:24 AM
+Nombre del Jugador: as
+Puntos Obtenidos: 10

@@ -24,6 +24,7 @@ import javax.swing.UIManager;
  */
 public class CardsGameMain extends javax.swing.JFrame {
 private Archivos data = new Archivos();
+private Negociacion.DataTransfer dt = new Negociacion.DataTransfer();
 private Imagenes img = new Imagenes();
 private NBaraja BRJ = new NBaraja();
 private ArrayList<Baraja> BarajaL = new ArrayList();
@@ -36,13 +37,15 @@ private int contador = 0;
 public int ganes = 0;
 private int puntos = 0;
 private int N = 0;
+private String nJ = "";
 /**
      * Creates new form CardsGameMain
      */
     public CardsGameMain() {
         initComponents();
         jButton2.setVisible(false);
-        loadCardz();//carga la baraja, el print esta ajustado para solo mostrar uno
+        loadCardz();
+        Load();
     }
 
     /**
@@ -115,9 +118,9 @@ private int N = 0;
             .addGroup(layout.createSequentialGroup()
                 .addGap(142, 142, 142)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                     .addComponent(jTextField1))
@@ -136,22 +139,21 @@ private int N = 0;
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(119, 119, 119)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(289, Short.MAX_VALUE))
         );
 
@@ -171,14 +173,15 @@ private int N = 0;
         try {
         data.loadCards();
         BRJ.definirPalos();
-        BarajaL = BRJ.getList(); //Cuando se implemente la funcion de revolver, se deberia llamar en esta linea
+        BarajaL = BRJ.getList();
         Jugador = BRJ.repartir(BarajaL);
         BarajaL.removeAll(Jugador);
         PC = BRJ.repartir(BarajaL);
         BarajaL.removeAll(PC);
         JLabel bckbrj = new JLabel();
         bckbrj.setIcon(img.getScaledImage(new ImageIcon("files/BRJ/BCKBRJ.png"), 80, 100));
-        bckbrj.setBounds(10, 175, 80, 100);
+        bckbrj.setBounds(10, 175, 80, 100);  
+        data.savePal();
         this.add(bckbrj);
             for (int i = 0; i < Jugador.size(); i++) {
                 Baraja get = Jugador.get(i);
@@ -279,15 +282,15 @@ private int N = 0;
                  text =("Gana el jugador");
                  ganes += 1;
             }
-        } else if (tipo1.equals("Debil") && tipo2.equals("Regular")||tipo2.equals("Debil") && tipo1.equals("Regular")) {
+        } else if (tipo1.equals("Débil") && tipo2.equals("Regular")||tipo2.equals("Débil") && tipo1.equals("Regular")) {
             if(tipo1.equals("Regular")) {
                  text =("Gana la computadora");
             } else {
                  text =("Gana el jugador");
                  ganes += 1;
             }
-        } else if (tipo1.equals("Debil") && tipo2.equals("Fuerte")||tipo2.equals("Debil") && tipo1.equals("Fuerte")) {
-            if(tipo1.equals("Debil")) {
+        } else if (tipo1.equals("Débil") && tipo2.equals("Fuerte")||tipo2.equals("Débil") && tipo1.equals("Fuerte")) {
+            if(tipo1.equals("Débil")) {
                  text =("Gana la computadora");
             } else {
                  text =("Gana el jugador");
@@ -301,7 +304,7 @@ private int N = 0;
     }
     
     private void TestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TestButtonActionPerformed
-        loadCardz();
+        loadCardz();        
     }//GEN-LAST:event_TestButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -312,23 +315,35 @@ private int N = 0;
             jLabel3.setVisible(false);            
             jButton2.setVisible(true);
             jButton1.setVisible(false);
-            jLabel4.setText("<html><body> Adivinacion:" + N + "<br> Ganes:" + ganes + "</body></html>");
-            comparar();   // TODO add your handling code here:            
+            jLabel4.setText("<html><body> Adivinación: " + N + "<br> Ganes: " + ganes + "</body></html>");
+            comparar();               
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Eso no es un numero valido","Alerta",JOptionPane.WARNING_MESSAGE);  
+            JOptionPane.showMessageDialog(this, "Ese no es un número válido","Alerta",JOptionPane.WARNING_MESSAGE);  
 
         }
 
+    }
+        private void Load(){
+        nJ = JOptionPane.showInputDialog("Nombre del Jugador: ");
+        while (nJ.equals("")){
+            JOptionPane.showMessageDialog(null, "Debes ingresar un nombre!");
+            nJ = JOptionPane.showInputDialog("Nombre del Jugador 1: ");
+        }    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-             JLabel label = LabelPC.get(contador);
+            JLabel label = LabelPC.get(contador);
             JLabel label2 = LabelPlayer.get(contador);
-            jLabel4.setText("<html><body> Adivinacion:" + N + "<br> Ganes:" + ganes + "</body></html>");
+            jLabel4.setText("<html><body> Adivinación: " + N + "<br> Ganes: " + ganes + "</body></html>");
         if (contador == 9) {
             jButton2.setVisible(false);
             puntos = 10-(abs(ganes- N));
-            
+            String puntoz = String.valueOf(puntos);           
+            dt.puntos(puntoz);
+            dt.username(nJ);
+            data.guardarDatos();
+            System.out.println(PC);
+            System.out.println(BarajaL);
             jLabel2.setText("<html><body> Puntuaje obtenido: " + puntos);
             label.setSize(label.getWidth()-20, label.getHeight()-20);
             label2.setBounds(label2.getX(), label2.getY() + 20,label2.getWidth()-20, label2.getHeight()-20);
@@ -339,8 +354,8 @@ private int N = 0;
             label.setSize(label.getWidth()-20, label.getHeight()-20);
             label2.setBounds(label2.getX(), label2.getY() + 20,label2.getWidth()-20, label2.getHeight()-20);            
       
-        contador += 1;
-         comparar();// TODO add your handling code here:
+         contador += 1;
+         comparar();
             }
 
 
