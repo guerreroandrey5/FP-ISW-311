@@ -84,7 +84,7 @@ private int N = 0;
             }
         });
 
-        jLabel3.setText("<html><body>Digite la cantidad de veces <br>que cree que ganara</html></body>");
+        jLabel3.setText("<html><body>Digite la cantidad de veces <br>que cree que ganara entre 0 y 10</html></body>");
 
         Inicio.setText("Inicio");
 
