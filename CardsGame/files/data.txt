@@ -26,3 +26,23 @@ Puntos Obtenidos: 7
 Fecha: Mar 13, 2022, 12:28:24 AM
 Nombre del Jugador: as
 Puntos Obtenidos: 10
+<------------------------------>
+Fecha: 13 mar. 2022 12:39:52
+Nombre del Jugador: Cris
+Puntos Obtenidos: 3
+<------------------------------>
+Fecha: 13 mar. 2022 12:46:09
+Nombre del Jugador: c
+Puntos Obtenidos: 9
+<------------------------------>
+Fecha: 13 mar. 2022 12:46:40
+Nombre del Jugador: 0
+Puntos Obtenidos: 5
+<------------------------------>
+Fecha: 13 mar. 2022 12:49:13
+Nombre del Jugador: 0
+Puntos Obtenidos: 5
+<------------------------------>
+Fecha: 13 mar. 2022 13:05:18
+Nombre del Jugador: 0
+Puntos Obtenidos: 3

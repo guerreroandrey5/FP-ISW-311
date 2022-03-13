@@ -37,7 +37,7 @@ public class Archivos {
     private static HashMap<String, String> PD = new HashMap();
     private static String RE ="";
     private ArrayList<String> arrl = new ArrayList<String>();
-    public void savePal() throws IOException{
+    public void savePal() {
         PD = BRJ.getPalos();          
             for ( Map.Entry<String, String> entry : PD.entrySet()){
 

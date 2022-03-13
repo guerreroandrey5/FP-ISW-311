@@ -67,7 +67,6 @@ private String nJ = "";
         MenuBar = new javax.swing.JMenuBar();
         Inicio = new javax.swing.JMenu();
         BtnBack = new javax.swing.JMenuItem();
-        TestButton = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cartas Inglesas Super Divertidas");
@@ -98,14 +97,6 @@ private String nJ = "";
             }
         });
         Inicio.add(BtnBack);
-
-        TestButton.setText("TestButton");
-        TestButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TestButtonActionPerformed(evt);
-            }
-        });
-        Inicio.add(TestButton);
 
         MenuBar.add(Inicio);
 
@@ -229,7 +220,7 @@ private String nJ = "";
     private void comparar() {
             Baraja Carta = PC.get(contador);
             Baraja Carta2 = Jugador.get(contador);
-            logica(Carta, Carta2, 1);            
+            logica(Carta, Carta2);            
             JLabel label = LabelPC.get(contador);
             JLabel label2 = LabelPlayer.get(contador);
             label.setIcon(Carta.getImg());   
@@ -243,7 +234,7 @@ private String nJ = "";
         
     }
     
-    private void logica(Baraja cd1, Baraja cd2,int num) {
+    private void logica(Baraja cd1, Baraja cd2) {
         String name1 = cd1.getNcardname();
         String text = "";
         String name2 = cd2.getNcardname();
@@ -251,7 +242,7 @@ private String nJ = "";
         int num2 = Integer.valueOf(cd2.getNcardnumber());
         String tipo1 = PD.get(cd1.getNcardname()).toString();
         String tipo2 = PD.get(cd2.getNcardname()).toString();
-        if (tipo1.equals("Regular") && tipo2.equals("Regular")) {
+        if (tipo1.equals("Regular") && tipo2.equals("Regular") || name1.equals(name2)) {
            if(num1 > num2) {
                 text = ("Gana la computadora");
                 System.out.println("gana" + cd1);
@@ -260,53 +251,33 @@ private String nJ = "";
                ganes += 1;
                 System.out.println("gana" + cd2);
             }
-        } else if (name1.equals(name2)) {
-            System.out.println(num1 + "," + num2);
-            if(num1 > num2) {
-                 text =("Gana la computadora");
-            } else {
-                 text =("Gana el jugador");
-                ganes += 1;
-            }
-        } else if (tipo1.equals(tipo2)) {
-            if(num1 > num2) {
-                text =("Gana la computadora");
-            } else {
-                 text =("Gana el jugador");
-                 ganes += 1;
-            }
-        } else if (tipo1.equals("Fuerte") && tipo2.equals("Regular")||tipo2.equals("Fuerte") && tipo1.equals("Regular")) {
+        }  else if (tipo1.equals("Fuerte") && tipo2.equals("Regular")||tipo2.equals("Fuerte") && tipo1.equals("Regular")) {
             if(tipo1.equals("Fuerte")) {
                  text =("Gana la computadora");
             } else {
                  text =("Gana el jugador");
                  ganes += 1;
             }
-        } else if (tipo1.equals("Débil") && tipo2.equals("Regular")||tipo2.equals("Débil") && tipo1.equals("Regular")) {
+        } else if (tipo1.equals("Debil") && tipo2.equals("Regular")||tipo2.equals("Debil") && tipo1.equals("Regular")) {
             if(tipo1.equals("Regular")) {
                  text =("Gana la computadora");
             } else {
                  text =("Gana el jugador");
                  ganes += 1;
             }
-        } else if (tipo1.equals("Débil") && tipo2.equals("Fuerte")||tipo2.equals("Débil") && tipo1.equals("Fuerte")) {
-            if(tipo1.equals("Débil")) {
+        } else if (tipo1.equals("Debil") && tipo2.equals("Fuerte")||tipo2.equals("Debil") && tipo1.equals("Fuerte")) {
+            if(tipo1.equals("Debil")) {
                  text =("Gana la computadora");
             } else {
                  text =("Gana el jugador");
                  ganes += 1;
             }
         }
-        if (num == 1) {
            jLabel2.setText(text); 
-        } 
+      
         
     }
     
-    private void TestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TestButtonActionPerformed
-        loadCardz();        
-    }//GEN-LAST:event_TestButtonActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             N = Integer.valueOf(jTextField1.getText());
@@ -315,8 +286,8 @@ private String nJ = "";
             jLabel3.setVisible(false);            
             jButton2.setVisible(true);
             jButton1.setVisible(false);
+            comparar();          
             jLabel4.setText("<html><body> Adivinación: " + N + "<br> Ganes: " + ganes + "</body></html>");
-            comparar();               
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ese no es un número válido","Alerta",JOptionPane.WARNING_MESSAGE);  
 
@@ -334,7 +305,6 @@ private String nJ = "";
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
             JLabel label = LabelPC.get(contador);
             JLabel label2 = LabelPlayer.get(contador);
-            jLabel4.setText("<html><body> Adivinación: " + N + "<br> Ganes: " + ganes + "</body></html>");
         if (contador == 9) {
             jButton2.setVisible(false);
             puntos = 10-(abs(ganes- N));
@@ -357,7 +327,7 @@ private String nJ = "";
          contador += 1;
          comparar();
             }
-
+        jLabel4.setText("<html><body> Adivinación: " + N + "<br> Ganes: " + ganes + "</body></html>");
 
        
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -406,7 +376,6 @@ private String nJ = "";
     private javax.swing.JMenuItem BtnBack;
     private javax.swing.JMenu Inicio;
     private javax.swing.JMenuBar MenuBar;
-    private javax.swing.JMenuItem TestButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
