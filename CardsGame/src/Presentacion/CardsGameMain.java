@@ -10,10 +10,12 @@ import Negociacion.NBaraja;
 import Objetos.Baraja;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneDarkIJTheme;
 import java.io.FileNotFoundException;
+import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -32,6 +34,8 @@ private ArrayList<JLabel> LabelPlayer = new ArrayList<>();
 private ArrayList<JLabel> LabelPC = new ArrayList<>();
 private int contador = 0;
 public int ganes = 0;
+private int puntos = 0;
+private int N = 0;
 /**
      * Creates new form CardsGameMain
      */
@@ -55,6 +59,8 @@ public int ganes = 0;
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         MenuBar = new javax.swing.JMenuBar();
         Inicio = new javax.swing.JMenu();
         BtnBack = new javax.swing.JMenuItem();
@@ -77,6 +83,8 @@ public int ganes = 0;
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jLabel3.setText("<html><body>Digite la cantidad de veces <br>que cree que ganara</html></body>");
 
         Inicio.setText("Inicio");
 
@@ -110,12 +118,18 @@ public int ganes = 0;
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                    .addComponent(jTextField1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,12 +141,17 @@ public int ganes = 0;
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(289, Short.MAX_VALUE))
         );
 
@@ -141,6 +160,8 @@ public int ganes = 0;
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
         MenuPrincipal mgame = new MenuPrincipal();
+        jTextField1.setVisible(false);
+        jLabel3.setVisible(false);
         mgame.setVisible(true);
         mgame.setLocationRelativeTo(null);
         this.dispose();
@@ -184,7 +205,7 @@ public int ganes = 0;
             }
             PD = BRJ.getPalos();
             SetVisiblePalos();
-            compararYPER();
+            DigitePER();
     } catch (FileNotFoundException ex) {
         
     } 
@@ -211,15 +232,12 @@ public int ganes = 0;
             label.setIcon(Carta.getImg());   
             label.setSize(label.getWidth()+20, label.getHeight()+20);
             label2.setBounds(label2.getX(), label2.getY() - 20,label2.getWidth()+20, label2.getHeight()+20);
+
     }
-    private void compararYPER() {
-        for (int i = 0; i < 10; i++) {
-            Baraja Carta = PC.get(i);
-            Baraja Carta2 = Jugador.get(i);
-            logica(Carta, Carta2, 0);                       
-        }
-            int per = (ganes*100)/10;
-            jLabel3.setText("<html><body>Probablilidad de victoria: <br>"+per + "%</body></html>");        
+    private void DigitePER() {
+        jTextField1.setVisible(true);
+        jLabel3.setVisible(true);
+        
     }
     
     private void logica(Baraja cd1, Baraja cd2,int num) {
@@ -287,24 +305,46 @@ public int ganes = 0;
     }//GEN-LAST:event_TestButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            N = Integer.valueOf(jTextField1.getText());
+            System.out.println(N);
+            jTextField1.setVisible(false);
+            jLabel3.setVisible(false);            
+            jButton2.setVisible(true);
+            jButton1.setVisible(false);
+            jLabel4.setText("<html><body> Adivinacion:" + N + "<br> Ganes:" + ganes + "</body></html>");
+            comparar();   // TODO add your handling code here:            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Eso no es un numero valido","Alerta",JOptionPane.WARNING_MESSAGE);  
 
-        jButton2.setVisible(true);
-        jButton1.setVisible(false);
-        comparar();   // TODO add your handling code here:
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-            JLabel label = LabelPC.get(contador);
+             JLabel label = LabelPC.get(contador);
             JLabel label2 = LabelPlayer.get(contador);
+            jLabel4.setText("<html><body> Adivinacion:" + N + "<br> Ganes:" + ganes + "</body></html>");
+        if (contador == 9) {
+            jButton2.setVisible(false);
+            puntos = 10-(abs(ganes- N));
+            
+            jLabel2.setText("<html><body> Puntuaje obtenido: " + puntos);
+            label.setSize(label.getWidth()-20, label.getHeight()-20);
+            label2.setBounds(label2.getX(), label2.getY() + 20,label2.getWidth()-20, label2.getHeight()-20);
+            } else {
+            if (contador == 8) {
+                jButton2.setText("Finalizar");
+            }
             label.setSize(label.getWidth()-20, label.getHeight()-20);
             label2.setBounds(label2.getX(), label2.getY() + 20,label2.getWidth()-20, label2.getHeight()-20);            
       
         contador += 1;
-        if(contador == 9) {
-            jButton2.setVisible(false);
-        }
-        comparar();// TODO add your handling code here:
+         comparar();// TODO add your handling code here:
+            }
+
+
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -357,5 +397,7 @@ public int ganes = 0;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
